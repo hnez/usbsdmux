@@ -1,0 +1,20 @@
+name: pytest on hardware
+
+on: [push, pull_request]
+
+jobs:
+  python-pytest:
+    name: Python pytest on hardware
+    runs-on: [self-hosted, dut-usb-sd-mux]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install python dependencies
+        run: |
+          python3 -m venv venv
+          source venv/bin/activate
+          python3 -m ensurepip
+          python3 -m pip install --upgrade pip
+          python3 -m pip install --upgrade pytest pytest-mock
+      - name: Run pytest
+        run: |
+          python3 -m pytest -vv

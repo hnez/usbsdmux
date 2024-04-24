@@ -3,7 +3,7 @@ requires = ["setuptools", "setuptools_scm[toml]"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "usbsdmux"
+name = "usbsdmux-hnez-test"
 description = "Tool to control an USB-SD-Mux from the command line"
 authors = [
   { name = "Chris Fiege", email = "python@pengutronix.de" },

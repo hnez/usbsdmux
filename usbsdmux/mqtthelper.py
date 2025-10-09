@@ -5,7 +5,6 @@ import configparser
 import json
 import os
 import sys
-from typing import Optional
 
 from usbsdmux.usbsdmux import UsbSdMux
 
@@ -15,7 +14,7 @@ class Config:
     Reads the configuration file by default at /etc/usbsdmux.config
     """
 
-    def __init__(self, configfile: Optional[str] = None):
+    def __init__(self, configfile: str | None = None):
         if configfile is not None:
             if not os.path.isfile(configfile):
                 raise FileNotFoundError("Config file {configfile} not found")
@@ -52,7 +51,7 @@ class Config:
         self.send_on_dut = send_section.get("dut", False)
 
 
-def _read_file(filename: str) -> Optional[str]:
+def _read_file(filename: str) -> str | None:
     try:
         with open(filename) as f:
             return f.read()
@@ -60,7 +59,7 @@ def _read_file(filename: str) -> Optional[str]:
         return None
 
 
-def _read_int(filename: str, base: int = 10) -> Optional[int]:
+def _read_int(filename: str, base: int = 10) -> int | None:
     try:
         return int(_read_file(filename).strip(), base)
     except TypeError:
@@ -102,7 +101,7 @@ def _gather_data(ctl: UsbSdMux, sg: str, mode: str) -> dict:
         "time_spent_flushing",
     )
 
-    stat = dict(zip(stat_names, stat_data))
+    stat = dict(zip(stat_names, stat_data, strict=True))
 
     usb_path = os.path.realpath(f"/sys/class/scsi_generic/{sg_name}")
 

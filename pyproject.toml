@@ -18,6 +18,7 @@ classifiers = [
     "Programming Language :: Python :: 3 :: Only",
 ]
 dynamic = ["version"] # via setuptools_scm
+requires-python = ">= 3.10"
 
 [project.optional-dependencies]
 mqtt = ["paho-mqtt"]

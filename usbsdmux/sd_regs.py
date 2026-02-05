@@ -304,7 +304,7 @@ class CSD_10(CSD_Common):
     FIELDS["C_SIZE"] = {
         "slice": (73, 62),
         "name": "device size",
-        "convert": lambda v: (v + 1),
+        "convert": lambda v: v + 1,
     }
     FIELDS["VDD_R_CURR_MIN"] = {
         "slice": (61, 59),

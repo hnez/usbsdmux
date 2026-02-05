@@ -101,7 +101,7 @@ def _gather_data(ctl: UsbSdMux, sg: str, mode: str) -> dict:
         "time_spent_flushing",
     )
 
-    stat = dict(zip(stat_names, stat_data))
+    stat = dict(zip(stat_names, stat_data, strict=True))
 
     usb_path = os.path.realpath(f"/sys/class/scsi_generic/{sg_name}")
 
